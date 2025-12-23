@@ -40,6 +40,16 @@ void hexdump(const void *d, int len);
         if ((lvl) && (lvl) <= CONFIG_DEBUG_LEVEL)       \
             __debug_enter((regs), __func__);            \
     } while (0)
+#define debug_scratchx86_enter()                        \
+    do {                                                \
+        if (CONFIG_SCRATCHX86_TESTING)                  \
+            dprintf(1, "ScratchX86-BIOS: Entered %s\n", __PRETTY_FUNCTION__);    \
+    } while(0)
+#define debug_scratchx86_exit()                         \
+    do {                                                \
+        if (CONFIG_SCRATCHX86_TESTING)                  \
+            dprintf(1, "ScratchX86-BIOS: Exited from %s\n", __PRETTY_FUNCTION__);    \
+    } while(0)
 #define debug_isr(lvl) do {                             \
         if ((lvl) && (lvl) <= CONFIG_DEBUG_LEVEL)       \
             __debug_isr(__func__);                      \

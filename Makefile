@@ -100,6 +100,7 @@ target-$(CONFIG_QEMU) += $(OUT)bios.bin
 target-$(CONFIG_CSM) += $(OUT)Csm16.bin
 target-$(CONFIG_COREBOOT) += $(OUT)bios.bin.elf
 target-$(CONFIG_BUILD_VGABIOS) += $(OUT)vgabios.bin
+target-$(CONFIG_SCRATCHX86_TESTING) += $(OUT)scratchx86.txt
 
 all: $(target-y)
 
@@ -264,6 +265,8 @@ $(OUT)autoconf.h : $(KCONFIG_CONFIG) ; $(call do-kconfig, silentoldconfig)
 $(KCONFIG_CONFIG): src/Kconfig vgasrc/Kconfig ; $(call do-kconfig, olddefconfig)
 %onfig: ; $(call do-kconfig, $@)
 help: ; $(call do-kconfig, $@)
+$(OUT)scratchx86.txt: $(OUT)bios.bin
+	$(Q)bash ./scripts/bios2txt.sh $< $@
 
 
 ################ Generic rules

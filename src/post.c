@@ -303,6 +303,7 @@ code_mutable_preinit(void)
 void VISIBLE32INIT
 dopost(void)
 {
+    debug_scratchx86_enter();
     code_mutable_preinit();
 
     // Detect ram and setup internal malloc.
@@ -325,6 +326,8 @@ handle_post(void)
 
     serial_debug_preinit();
     debug_banner();
+    // ScratchX86 was here
+    dprintf(1, "Brought to you by sleepy_jai (also known as VirusLarge, zanXZ, etc.)\n");
 
     // Check if we are running under Xen.
     xen_preinit();

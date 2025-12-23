@@ -120,6 +120,8 @@ make_bios_writable(void)
     if (!CONFIG_QEMU || runningOnXen())
         return;
 
+    debug_scratchx86_enter();
+
     dprintf(3, "enabling shadow ram\n");
 
     // At this point, statically allocated variables can't be written,
@@ -144,6 +146,7 @@ make_bios_writable(void)
         }
     }
     dprintf(1, "Unable to unlock ram - bridge not found\n");
+    debug_scratchx86_exit();
 }
 
 // Make the BIOS code segment area (0xf0000) read-only.

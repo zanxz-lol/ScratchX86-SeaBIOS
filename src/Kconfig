@@ -580,4 +580,10 @@ menu "Debugging"
             after boot using 'cbmem -c'.  Only 32bit code (basically every-
             thing before booting the OS) writes to the log buffer.
 
+    config SCRATCHX86_TESTING
+        bool "ScratchX86 testing"
+        default n
+        help
+            Should only be used when debugging ScratchX86.
+
 endmenu
